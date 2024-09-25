@@ -42,6 +42,7 @@ Implementation based primarily on material at https://csrc.nist.gov/csrc/media/p
 Composed of three layers; these are distinct, invertible, uniform transformations (technically not a Feistel structure). An additional Key Addition Layer is applied before the first round, and the linear mixing layer in the final round is different from the mixing layer in other rounds.
 
 The number of rounds to use is calculated as a function of the key length and block length:
+
 ![Table showing the number of rounds to use for each combination of key length and block length.](readme_images/Nr_table.png)
 
 In a round, the transformations are applied in the following order:
@@ -58,12 +59,14 @@ Applies S-boxes in parallel across all state bytes.
 The substitution table (S-box) is constructed from a composition of the following two transformations:
 - Take the multiplicative inverse of the bytes in GF(2<sub>8</sub>).
 - Apply an affine defined by:
+
 ![Matrix equation describing an affine transformation.](readme_images/bytesub_affine.png)
 
 To invert the S-box, the inverse affine mapping is applied, and then the multiplicative inverse taken again.
 
 ### ShiftRows
 Rows of the state are cyclically shifted over different offsets, which are determined by the block length:
+
 ![alt text](readme_images/shiftrow_shifts.png)
 - Row 0 is not shifted
 - Row 1 is shifted C1 bytes
@@ -74,6 +77,7 @@ Rows of the state are cyclically shifted over different offsets, which are deter
 
 ### MixColumns
 For this transformation, the columns of the state are considered as polynomials over GF(2<sub>8</sub>), and multiplied modulo M(x) (see earlier) with the fixed polynomial c(x):
+
 ![alt text](readme_images/mixcolumn_cx.png)
 
 This can be implemented as a matrix multiplication (see the Mathematical Preliminaries section).
