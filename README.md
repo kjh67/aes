@@ -6,7 +6,7 @@ Implementation based primarily on material at https://csrc.nist.gov/csrc/media/p
 
 
 
-# A bit about AES
+# A bit about AES (Rijndael)
 
 ## Mathematical Preliminaries
 - For some operations, bytes represent elements in the Galois Field GF(2<sup>8</sup>).
@@ -26,6 +26,10 @@ Implementation based primarily on material at https://csrc.nist.gov/csrc/media/p
 
 ## Internal State
 - An array of bytes, comprised of four rows, with a number of columns N<sub>b</sub> equal to the block length divided by 32.
+
+> [!NOTE]
+> The specification of AES fixes a block size of 128 bits; these notes are based on the original specification of the Rijndael cipher, which allows any 32-byte divisible block size between 128 and 256.
+
 - Cipher key is also an array of bytes; four rows, with the number of columns N<sub>k</sub> equal to the key length divided by 32.
 - Both of these state components are sometimes considered as a 1D array of four-byte vectors, where each vector corresponds to a column in the 2D array.
 
@@ -48,7 +52,7 @@ In a round, the transformations are applied in the following order:
 
 The final round omits the column mixing step.
 
-### ByteSub (Non-Linear Layer)
+### SubBytes (Non-Linear Layer)
 Applies S-boxes in parallel across all state bytes.
 
 The substitution table (S-box) is constructed from a composition of the following two transformations:
@@ -58,7 +62,7 @@ The substitution table (S-box) is constructed from a composition of the followin
 
 To invert the S-box, the inverse affine mapping is applied, and then the multiplicative inverse taken again.
 
-### ShiftRow
+### ShiftRows
 Rows of the state are cyclically shifted over different offsets, which are determined by the block length:
 ![alt text](readme_images/shiftrow_shifts.png)
 - Row 0 is not shifted
@@ -68,7 +72,7 @@ Rows of the state are cyclically shifted over different offsets, which are deter
 
 (The inverse of this transformation is just inverting the cyclic shifts.)
 
-### MixColumn
+### MixColumns
 For this transformation, the columns of the state are considered as polynomials over GF(2<sub>8</sub>), and multiplied modulo M(x) (see earlier) with the fixed polynomial c(x):
 ![alt text](readme_images/mixcolumn_cx.png)
 
@@ -96,4 +100,4 @@ Note: this key expansion does not need to be done all at once, as subsequent wor
 - Implement the key schedule
 - Implement the round function as a whole
 - Add proper input and output handling
-- Add some basic block cipher modes (ECB, CBC, GCM to start with)
+- Add some basic block cipher modes (e.g. ECB, CBC, GCM)
