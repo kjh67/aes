@@ -39,9 +39,9 @@ enable_testing()
 
 add_executable(
     aes_tests
-    tests/state_test.cc
-    tests/key_test.cc
-    tests/aes_test.cc
+    tests/state.test.cc
+    tests/key.test.cc
+    tests/aes.test.cc
 )
 
 target_link_libraries(
