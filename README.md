@@ -14,7 +14,7 @@ Implementation based primarily on material at https://csrc.nist.gov/csrc/media/p
 
 ### Operations on Galois Fields
 - Addition can be implemented as a simple bitwise XOR.
-- Multiplication of field elements can be implemented as carry-less muliplication, follwed by a bitwise XOR with m(x) (the irreducible polynomial for the Galois Field).
+- Multiplication of field elements can be implemented as carry-less muliplication (bitwise AND), follwed by a bitwise XOR with m(x) (the irreducible polynomial for the Galois Field).
 - Muliplication by x can be implemented as a left shift and conditional bitwise XOR with m(x) (only perform the XOR if the degree of the polynomial is above 7).
 
 ### Operations on Polynomials with coefficients in GF(2<sup>8</sup>)
