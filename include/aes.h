@@ -50,4 +50,13 @@ class AES {
         byte* Decrypt(byte* content);
 };
 
+namespace mathfuncs {
+class MathError {};
+
+byte GaloisMultiplicativeInverse(byte p);
+void GaloisPolynomialMultiplication(byte* p, byte* q, byte* modulus);
+byte AffineApplication(byte p, byte* affine_mat, byte affine_vec);
+void XORByteArrays(byte* p, byte* q);
+}
+
 }

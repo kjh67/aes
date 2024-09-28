@@ -3,3 +3,7 @@ build/*
 
 # VSCode Files
 .vscode*
+
+# CMake files
+CMakeFiles*
+CMakeCache.txt
