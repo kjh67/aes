@@ -14,26 +14,17 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
-enable_testing()
-
 
 #
 # TEST FILE SETUP
 #
 
-add_executable(
-    aes_tests
-    state.test.cc
-    key.test.cc
-    aes.test.cc
+add_executable(aes_tests
     aes_mathfuncs.test.cc
+    state.test.cc
 )
 
-target_link_libraries(
-    aes_tests
-    GTest::gtest_main
-    aes
-)
+target_link_libraries(aes_tests GTest::gtest_main aes)
 
 include(GoogleTest)
 gtest_discover_tests(aes_tests)

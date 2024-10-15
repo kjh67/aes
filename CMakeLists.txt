@@ -10,7 +10,8 @@ project(
 # MAIN PROJECT SETUP
 #
 
-add_library(aes src/aes.cpp src/key.cpp src/state.cpp)
+add_library(aes src/aes.cpp src/key.cpp src/state.cpp src/aes_mathfuncs.cpp)
 target_include_directories(aes PUBLIC include)
 
+enable_testing()
 add_subdirectory(tests)
