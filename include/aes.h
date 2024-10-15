@@ -53,8 +53,9 @@ class AES {
 namespace mathfuncs {
 class MathError {};
 
+byte GaloisByteMultiplication(byte p, byte q);
 byte GaloisMultiplicativeInverse(byte p);
-void GaloisPolynomialMultiplication(byte* p, byte* q, byte* modulus);
+byte* GaloisPolynomialMultiplication(byte* p, byte* q);
 byte AffineApplication(byte p, byte* affine_mat, byte affine_vec);
 void XORByteArrays(byte* p, byte* q);
 }
