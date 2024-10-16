@@ -22,6 +22,8 @@ FetchContent_MakeAvailable(googletest)
 add_executable(aes_tests
     aes_mathfuncs.test.cc
     state.test.cc
+    key.test.cc
+    aes.test.cc
 )
 
 target_link_libraries(aes_tests GTest::gtest_main aes)
