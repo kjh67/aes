@@ -43,7 +43,7 @@ byte* State::GetState() {
     return state;
 }
 
-void State::SetInverse(bool inv) {
+void State::SetInverseCipher(bool inv) {
     inverse = inv;
 }
 
@@ -61,7 +61,7 @@ void State::SubBytes() {
         for (int b=0; b<nb*4; b++) {
             // Apply s-box to each byte in the state
             byte inv = mathfuncs::GaloisMultiplicativeInverse(state[b]);
-            //TODO: affine application
+            //TODO: apply affine
             state[b] = inv;
         }
     }
