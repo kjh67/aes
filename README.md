@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> This is not a proper implementation of AES, this is a personal project exploring the standard. Do not use.
+> This is not a crypto-secure implementation of AES (some of the arithmetic algorithms used are vulnerable through side channels, and key generation is not properly pseudo-random).
 
 
 Implementation based primarily on material at https://csrc.nist.gov/csrc/media/projects/cryptographic-standards-and-guidelines/documents/aes-development/rijndael-ammended.pdf.
